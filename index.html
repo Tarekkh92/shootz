@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T. Khalaily Photography Portfolio</title>
+    <title>Fardos Shoots Photography</title>
     <style>
         /* Base Dark Theme Styling */
         body {
@@ -16,7 +16,7 @@
 
         header {
             text-align: center;
-            padding: 80px 20px 50px 20px;
+            padding: 80px 20px 40px 20px;
         }
 
         header h1 {
@@ -35,24 +35,35 @@
             text-transform: uppercase;
         }
 
-        /* Responsive Flow Grid Layout */
-        .gallery-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 24px 100px 24px;
+        /* Portfolio Sections styling */
+        .category-section {
+            max-width: 1400px;
+            margin: 0 auto 60px auto;
+            padding: 0 24px;
         }
 
+        .category-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #888888;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #1f1f1f;
+            padding-bottom: 10px;
+        }
+
+        /* Responsive Grid for Images */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
         }
 
         .gallery-item {
             overflow: hidden;
             background-color: #121212;
             aspect-ratio: 3 / 2;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.45);
             border-radius: 4px;
             position: relative;
         }
@@ -94,12 +105,13 @@
         }
 
         .lightbox-content {
-            max-width: 94%;
-            max-height: 88vh;
+            max-width: 85%;
+            max-height: 85vh;
             object-fit: contain;
             box-shadow: 0 25px 60px rgba(0,0,0,0.8);
             transform: scale(0.96);
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            user-select: none;
         }
 
         .lightbox.active .lightbox-content {
@@ -115,6 +127,7 @@
             cursor: pointer;
             transition: color 0.2s ease, transform 0.2s ease;
             user-select: none;
+            z-index: 2100;
         }
 
         .close:hover {
@@ -122,160 +135,238 @@
             transform: scale(1.1);
         }
 
+        /* Navigation Arrows */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 28px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            user-select: none;
+            z-index: 2100;
+        }
+
+        .nav-btn:hover {
+            background: rgba(40, 40, 40, 0.8);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .prev-btn { left: 40px; }
+        .next-btn { right: 40px; }
+
         /* Mobile View Rules */
         @media (max-width: 600px) {
             .gallery {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
-            header h1 {
-                font-size: 1.8rem;
-            }
-            header {
-                padding: 60px 20px 40px 20px;
-            }
-            .close {
-                top: 25px;
-                right: 25px;
-                font-size: 38px;
-            }
+            header h1 { font-size: 1.8rem; }
+            header { padding: 60px 20px 30px 20px; }
+            .close { top: 20px; right: 25px; font-size: 38px; }
+            .nav-btn { width: 45px; height: 45px; font-size: 20px; }
+            .prev-btn { left: 15px; }
+            .next-btn { right: 15px; }
+            .lightbox-content { max-width: 90%; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>T. Khalaily Portfolio</h1>
-        <p>79 Unique Folders • Complete Single-Image Retrospective</p>
+        <h1>Fardos Shoots</h1>
+        <p>Fine Art & Documentary Photography Portfolio</p>
     </header>
 
-    <main class="gallery-container">
-        <div class="gallery" id="gallery">
-            <!-- Exactly 1 image from each of your 79 specific folders -->
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1qmTWGgDMLbv7E5JrQgJskrQ88ICXviZf" alt="Folder 1: عكا"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1UjpuSfTS3GqT-46QQBAGa1TKB2f4y3la" alt="Folder 2: عكا #2"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1YN1NaYXDAOo0ZrPoszQe2FmrZCR3-VfC" alt="Folder 3: old jaffa"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1JRKr-7xpuj2LquUwtV9vORfd_1cSTLdu" alt="Folder 4: animals"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1EfPFDBgCzSVqI-GurPFmcEvMPZMGIIBP" alt="Folder 5: animals #2"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1iCHdymkR8xy-rmp568QGQ-9AaXHM2hnR" alt="Folder 6: animals #3"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1GvIXoHgAI8gSTT1k3EpYj-zrz7e4_T4r" alt="Folder 7: athens/athens #2"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/13FV2lTffWrAIOwNaJR3gIHrlptr8-Q8x" alt="Folder 8: athens #3"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1D3KQB0Nh-rvTqM-DLSxGVVWoBNEdh5nG" alt="Folder 9: athens #4"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1Jo_FpeunMCXWzuCZWTetKWnch7dP-tWt" alt="Folder 10: athens #5"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/19FCFF_WBic7w_ez3gUDG_eCylkRLKFEY" alt="Folder 11: athens #6"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1rWo9R3l8rOVQqo5rjKhHd9ayzH3FL1PD" alt="Folder 12: athens #7"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1qkpOsQRI_Dd7_-JUq7qt1SPn3bMx7Vqv" alt="Folder 13: athens #8"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1AdGyXo6LgtFMKTbEDs7Z3X-CYTUAq07b" alt="Folder 14: athens #9"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1nb9JYzjVcM6N83jmMLuu9VLIeDzv--zx" alt="Folder 15: athens #10"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1puGIdd6qHE1FVbeswtoqOQnti6_ctQr8" alt="Folder 16: athens #11"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1mf1Vo6oBwabJpfpfOVrIJVKqdvxGHZ0L" alt="Folder 17: athens #12"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1uAllICjHcGS_KAEyKlWCIy4Zedmmb6tv" alt="Folder 18: athens #13"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1jnoZw0je667oos9m2VAJq3lxCE9lTWMx" alt="Folder 19: athens #14"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1WsVXh4I6gP8PCJm7Iz9GFBU0vVxC801T" alt="Folder 20: athens #15"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1vAi4ipzPdHXbs5o4sdIzDUq34jnnztrW" alt="Folder 21: athens #16"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1WZi9KNmUIquGM4PcKOjE_VNjWMVzdESm" alt="Folder 22: athens #17"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10fsU_ZP6LiQVFM0YYKG_Fi09XUPAXYsG" alt="Folder 23: athens #18"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1U8YMCgUvZx7LN4CY7vDY4L4YoZxRs2d4" alt="Folder 24: athens #19"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1rGCH1tmTEou3MGPsCB5j6vphbzWPGCZm" alt="Folder 25: athens #20"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10mrHHtx8v5vl3ZXSGejj1S-mHwqupFvD" alt="Folder 26: athens #21"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1wUueDMfth_kDKvnuwZYANfeWF1ZzUi61" alt="Folder 27: athens #22"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1ap24mh5K8ibCxHHElvhFIR5IyQuUtZbY" alt="Folder 28: athens #23"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10kmlBrE-U0mEVpkspLYG-9xcW094Wgx5" alt="Folder 29: athens #24"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10ghy4_u672YezGzUCaRYdYrof-GyCjyI" alt="Folder 30: athens #25"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1IskFoJ1d5FN0OqywhngA2kO-ZQQrw6s5" alt="Folder 31: athens #26"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/16CSMoJh-6u-TOHFGNcj_F-YCUAjBuVMC" alt="Folder 32: athens #27"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1fFFTMO9zTy9MkcZGeIDcVbkFIB31GVy2" alt="Folder 33: athens #28"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1VVeX_JtHBAhuEEHRlZCMEBd3t2HeYTZ-" alt="Folder 34: athens #29"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1Ht5qZSWztAi66Eexf2NBTEKDVeAdC4Yd" alt="Folder 35: athens #30"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1cQP5t5WJXyohtsWCsed0K3vxcOrhr92b" alt="Folder 36: athens #31"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/12FbEbMED1fIN4VIlS2Ilt6eP7d6eT3aB" alt="Folder 37: athens #32"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1tJ-pZKvBTqM5vQIgI0ZnV1wMi521CVj-" alt="Folder 38: athens #33"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1BfXMWSSNiamm4fQSlYRZF5LunzRuAcZ9" alt="Folder 39: athens #34"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1CFTsk277oltIdfCuoTsY6um3E-pBRcME" alt="Folder 40: athens #35"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1Kiu3cg1ute-PHp6RhcSNQjnvOuoYwN63" alt="Folder 41: athens #36"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1Q9kvWkaWA0xb01xy7LCL2E_G5fdcw81C" alt="Folder 42: athens #37"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1epfncXlIT8jvD6ZcOyhM7EHS5T-XJTFM" alt="Folder 43: athens #38"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1h2CM8KMGq7ywCeW7JK5gvDuoNnJI6QOR" alt="Folder 44: athens #39"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1Ru2ip1kc-rgqssI7sc_U2v2ubMbHeI72" alt="Folder 45: athens #40"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1QgPKgikolq5NyFLeAuL5CJDL3H4UMQYU" alt="Folder 46: athens #41"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1e79yypY7Q9BnCpdo2mjzRS-wxG_ca6xX" alt="Folder 47: athens #42"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1QgQfkdDaAi82k7VSfBDq_2r-B2SPpIKA" alt="Folder 48: athens #43"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1vt8FXKp5airFqnQe5EfH-DTU_mTBF2KJ" alt="Folder 49: athens #44"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1dSTmGKysqNum45wb7ubnz2AjA1R_l659" alt="Folder 50: athens #45"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10WKNUc3N60CwnD6qBkZkxm2HyVb17VvT" alt="Folder 51: athens #46"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1KvcOyGGo240ZCId7xzgQFU-FGg_fAPN1" alt="Folder 52: athens #47"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1FDZTI4JuTkNF0hdG666oEYQ73FO5qLdQ" alt="Folder 53: athens #48"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1NKrezUUA_cpRqJq2Mepzu9ehHdyNOMWG" alt="Folder 54: athens #49"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1DoklEMYw5DzVKP0C63l8VYN54TOOv1mK" alt="Folder 55: athens #50"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1RRa5HXuZdjGZcGz3-qM97uk3rzndWJPn" alt="Folder 56: athens #51"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1qmTWGgDMLbv7E5JrQgJskrQ88ICXviZf" alt="Folder 57: سبسطية"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1UjpuSfTS3GqT-46QQBAGa1TKB2f4y3la" alt="Folder 58: سبسطية #2"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1YN1NaYXDAOo0ZrPoszQe2FmrZCR3-VfC" alt="Folder 59: سبسطية #3"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1GvIXoHgAI8gSTT1k3EpYj-zrz7e4_T4r" alt="Folder 60: aqaba"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/13FV2lTffWrAIOwNaJR3gIHrlptr8-Q8x" alt="Folder 61: aqaba #2"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1D3KQB0Nh-rvTqM-DLSxGVVWoBNEdh5nG" alt="Folder 62: aqaba #3"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1Jo_FpeunMCXWzuCZWTetKWnch7dP-tWt" alt="Folder 63: distinct-set-63"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/19FCFF_WBic7w_ez3gUDG_eCylkRLKFEY" alt="Folder 64: distinct-set-64"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1rWo9R3l8rOVQqo5rjKhHd9ayzH3FL1PD" alt="Folder 65: distinct-set-65"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1qkpOsQRI_Dd7_-JUq7qt1SPn3bMx7Vqv" alt="Folder 66: distinct-set-66"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1AdGyXo6LgtFMKTbEDs7Z3X-CYTUAq07b" alt="Folder 67: distinct-set-67"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1nb9JYzjVcM6N83jmMLuu9VLIeDzv--zx" alt="Folder 68: distinct-set-68"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1puGIdd6qHE1FVbeswtoqOQnti6_ctQr8" alt="Folder 69: distinct-set-69"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1mf1Vo6oBwabJpfpfOVrIJVKqdvxGHZ0L" alt="Folder 70: distinct-set-70"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1uAllICjHcGS_KAEyKlWCIy4Zedmmb6tv" alt="Folder 71: distinct-set-71"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1jnoZw0je667oos9m2VAJq3lxCE9lTWMx" alt="Folder 72: distinct-set-72"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1WsVXh4I6gP8PCJm7Iz9GFBU0vVxC801T" alt="Folder 73: distinct-set-73"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1vAi4ipzPdHXbs5o4sdIzDUq34jnnztrW" alt="Folder 74: distinct-set-74"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1WZi9KNmUIquGM4PcKOjE_VNjWMVzdESm" alt="Folder 75: distinct-set-75"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10fsU_ZP6LiQVFM0YYKG_Fi09XUPAXYsG" alt="Folder 76: distinct-set-76"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1U8YMCgUvZx7LN4CY7vDY4L4YoZxRs2d4" alt="Folder 77: distinct-set-77"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1rGCH1tmTEou3MGPsCB5j6vphbzWPGCZm" alt="Folder 78: distinct-set-78"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1wUueDMfth_kDKvnuwZYANfeWF1ZzUi61" alt="Folder 79: distinct-set-79"></div>
-        </div>
+    <main id="portfolio-container">
+        
+        <!-- Art Category -->
+        <section class="category-section">
+            <div class="category-title">Art</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1dpEkRJKV9lq3cy6NtQkyFr4btGsO1tj4" alt="Art Selection 1"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1GvIXoHgAI8gSTT1k3EpYj-zrz7e4_T4r" alt="Art Selection 2"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1xq3JsT_6xeIHsqyzBiqDLm4sJfLgaZjs" alt="Art Selection 3"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/13FV2lTffWrAIOwNaJR3gIHrlptr8-Q8x" alt="Art Selection 4"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1HngYwxPUron9mHyja6KeTXiPAgfPc5j8" alt="Art Selection 5"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1HnILyEXLCCh0a_rxgNfrv-5u6MsTe1nD" alt="Art Selection 6"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1uw1m_XHVa5rn2wovfOud_aEIFk2MA_RB" alt="Art Selection 7"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10ghy4_u672YezGzUCaRYdYrof-GyCjyI" alt="Art Selection 8"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1BJxjVtVnhxw-CYGJ_jdus8cEfoPVWyze" alt="Art Selection 9"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10kmlBrE-U0mEVpkspLYG-9xcW094Wgx5" alt="Art Selection 10"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1Bo6r-6Rwbch5WN9giWSxUQcRdtArRk7g" alt="Art Selection 11"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1wUueDMfth_kDKvnuwZYANfeWF1ZzUi61" alt="Art Selection 12"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10mrHHtx8v5vl3ZXSGejj1S-mHwqupFvD" alt="Art Selection 13"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1rGCH1tmTEou3MGPsCB5j6vphbzWPGCZm" alt="Art Selection 14"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10fsU_ZP6LiQVFM0YYKG_Fi09XUPAXYsG" alt="Art Selection 15"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1epfncXlIT8jvD6ZcOyhM7EHS5T-XJTFM" alt="Art Selection 16"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1h2CM8KMGq7ywCeW7JK5gvDuoNnJI6QOR" alt="Art Selection 17"></div>
+            </div>
+        </section>
+
+        <!-- Animals Category -->
+        <section class="category-section">
+            <div class="category-title">Animals</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/18OAexFkrHWD6YShjHlVCEqdcutWPBdUc" alt="Animals - IMG_2466"></div>
+            </div>
+        </section>
+
+        <!-- Views Category -->
+        <section class="category-section">
+            <div class="category-title">Views</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1s40QALiGBv7GWKc_v5AAgW_KgxLNWBXT" alt="Views - IMG_2462"></div>
+            </div>
+        </section>
+
+        <!-- Theatre Category -->
+        <section class="category-section">
+            <div class="category-title">Theatre</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1QdyF7Q9jJtwjY35S9gtVo-7gyhq2JtMM" alt="Theatre Selection 1"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1kpl4iJ83K-snQM1DS5hrHAGUUMKBy37o" alt="Theatre Selection 2"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1i3fi5Gof6CQs0blbA1b8pk3dI25Z2BC1" alt="Theatre Selection 3"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1t1vXOdcOOSJhnH-isFiQPFJF-_WOnLK7" alt="Theatre Selection 4"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1QgPKgikolq5NyFLeAuL5CJDL3H4UMQYU" alt="Theatre Selection 5"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1vt8FXKp5airFqnQe5EfH-DTU_mTBF2KJ" alt="Theatre Selection 6"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1G9tkwhpj26v36XOg1vi2poyBaKDSjl4x" alt="Theatre Selection 7"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1UbmBdO48UYKnWOJB7J_-SSMgN40O1VPz" alt="Theatre Selection 8"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1QQbr-vlCsavVRLEXb1A6W8GPY7X3MwHs" alt="Theatre Selection 9"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1fQnVwgFshn9CHeAkbu67AL1dWBRuDfwB" alt="Theatre Selection 10"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1jmXDNwQr1as5mAcmMhRJBHsCVsp7v0I0" alt="Theatre Selection 11"></div>
+            </div>
+        </section>
+
+        <!-- Sea Category -->
+        <section class="category-section">
+            <div class="category-title">Sea</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1c_fAYzc4tHgCWOFAxf4C2gYk5sZ4Yt39" alt="Sea Selection 1"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10cgBMxNZ8LFP5wgqRkK4AJ7nm6__WwEo" alt="Sea Selection 2"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1G4sFfY7EOr_raLlxOwLCZvKQdVRj1xN5" alt="Sea Selection 3"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/12WiyMHJQeftMDRQSUKDnu89fC6fTWJL2" alt="Sea Selection 4"></div>
+            </div>
+        </section>
+
+        <!-- Flags Category -->
+        <section class="category-section">
+            <div class="category-title">Flags</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1IQ9MReS4awEKK_3YIiELJ9VaOClqBYT4" alt="Flags Selection"></div>
+            </div>
+        </section>
+
+        <!-- Portraits Category -->
+        <section class="category-section">
+            <div class="category-title">Portraits</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1GptAxMw2ohz4KQvMR7HGIG4UCVMN_VgU" alt="Portraits Selection 1"></div>
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1mRwRmVVW4RyOqPQvAa3hnZjopOdvDlQu" alt="Portraits Selection 2"></div>
+            </div>
+        </section>
+
+        <!-- Doors Category -->
+        <section class="category-section">
+            <div class="category-title">Doors</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/13oW-s4DdS7AH_wSBK4jeaz4PXqdt3F4x" alt="Doors Selection"></div>
+            </div>
+        </section>
+
+        <!-- Vehicles Category -->
+        <section class="category-section">
+            <div class="category-title">Vehicles</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1WZi9KNmUIquGM4PcKOjE_VNjWMVzdESm" alt="Vehicles Selection"></div>
+            </div>
+        </section>
+
+        <!-- Churches Category -->
+        <section class="category-section">
+            <div class="category-title">Churches</div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1rWo9R3l8rOVQqo5rjKhHd9ayzH3FL1PD" alt="Churches Selection"></div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Lightbox Structural Overlay -->
     <div id="lightbox" class="lightbox">
         <span class="close" id="close-btn">&times;</span>
+        <div class="nav-btn prev-btn" id="prev-btn">&#10094;</div>
         <img class="lightbox-content" id="full-img" src="" alt="Enlarged gallery view">
+        <div class="nav-btn next-btn" id="next-btn">&#10095;</div>
     </div>
 
     <script>
-        const gallery = document.getElementById('gallery');
+        const portfolioContainer = document.getElementById('portfolio-container');
         const lightbox = document.getElementById('lightbox');
         const fullImg = document.getElementById('full-img');
         const closeBtn = document.getElementById('close-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
 
-        // Dynamic Lightbox Triggers across the mosaic stream
-        gallery.addEventListener('click', (e) => {
+        let allImages = [];
+        let currentIndex = -1;
+
+        const updateImagesArray = () => {
+            allImages = Array.from(portfolioContainer.querySelectorAll('.gallery-item img'));
+        };
+
+        const showImage = (index) => {
+            if (index < 0) index = allImages.length - 1; 
+            if (index >= allImages.length) index = 0;    
+            
+            currentIndex = index;
+            const targetImg = allImages[currentIndex];
+            fullImg.src = targetImg.src;
+            fullImg.alt = targetImg.alt;
+        };
+
+        portfolioContainer.addEventListener('click', (e) => {
             if (e.target.tagName === 'IMG') {
-                fullImg.src = e.target.src;
-                fullImg.alt = e.target.alt;
+                updateImagesArray();
+                const index = allImages.indexOf(e.target);
                 lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Lock background scrolling
+                document.body.style.overflow = 'hidden'; 
+                showImage(index);
             }
         });
 
         const closeLightbox = () => {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
-            setTimeout(() => { fullImg.src = ''; }, 300); // Purge cache after fade transition
+            setTimeout(() => { fullImg.src = ''; }, 300);
         };
 
         closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex - 1); });
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex + 1); });
         
-        // Close if backdrop overlay canvas clicked
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 closeLightbox();
             }
         });
 
-        // Accessibility Escape Key bindings
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+            if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
         });
     </script>
 </body>
