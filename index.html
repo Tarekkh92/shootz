@@ -12,11 +12,103 @@
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Navigation Header */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 11, 11, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 1500;
+            border-bottom: 1px solid #141414;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Fixed Dropdown Styling with Invisible Bridge Padding */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px; /* Creates an invisible mouse-bridge to the dropdown box */
+            margin-bottom: -15px; /* Counteracts padding to maintain center alignment */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #121212;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
+            z-index: 1600;
+            border-radius: 4px;
+            border: 1px solid #1f1f1f;
+            top: 100%;
+            left: 0;
+            margin-top: 0; /* Keeps it flush against the invisible bridge padding */
+        }
+
+        .dropdown-content a {
+            color: #aaa;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         header {
             text-align: center;
-            padding: 80px 20px 40px 20px;
+            padding: 140px 20px 40px 20px;
         }
 
         header h1 {
@@ -40,6 +132,7 @@
             max-width: 1400px;
             margin: 0 auto 60px auto;
             padding: 0 24px;
+            scroll-margin-top: 100px;
         }
 
         .category-title {
@@ -52,17 +145,17 @@
             padding-bottom: 10px;
         }
 
-        /* Responsive Grid for Images */
+        /* Premium CSS Columns Masonry Layout */
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
+            column-count: 3;
+            column-gap: 24px;
         }
 
         .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
             overflow: hidden;
             background-color: #121212;
-            aspect-ratio: 3 / 2;
             box-shadow: 0 6px 25px rgba(0,0,0,0.45);
             border-radius: 4px;
             position: relative;
@@ -70,16 +163,104 @@
 
         .gallery-item img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             cursor: pointer;
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
             filter: brightness(0.93) contrast(1.03);
         }
 
         .gallery-item img:hover {
-            transform: scale(1.04);
+            transform: scale(1.03);
             filter: brightness(1.06) contrast(1.06);
+        }
+
+        /* Section Cards Layout */
+        .split-container {
+            max-width: 1400px;
+            margin: 0 auto 80px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            scroll-margin-top: 100px;
+        }
+
+        .info-heading {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #fff;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #1f1f1f;
+            padding-bottom: 10px;
+        }
+
+        /* Pricing Grid Cards */
+        .price-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .price-card {
+            background: #121212;
+            border: 1px solid #181818;
+            padding: 24px;
+            border-radius: 6px;
+            transition: border-color 0.2s ease;
+        }
+
+        .price-card:hover {
+            border-color: #262626;
+        }
+
+        .price-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .price-name {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .price-value {
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .price-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        /* Email Action Buttons */
+        .email-btn {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: #0b0b0b;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            text-align: center;
+        }
+
+        .email-btn:hover {
+            background-color: #ffffff;
         }
 
         /* Fullscreen Lightbox Modal */
@@ -167,13 +348,16 @@
         .next-btn { right: 40px; }
 
         /* Mobile View Rules */
+        @media (max-width: 900px) {
+            .gallery { column-count: 2; }
+            .split-container { grid-template-columns: 1fr; gap: 40px; }
+        }
+
         @media (max-width: 600px) {
-            .gallery {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
+            .gallery { column-count: 1; }
+            .nav-links { display: none; }
             header h1 { font-size: 1.8rem; }
-            header { padding: 60px 20px 30px 20px; }
+            header { padding: 120px 20px 30px 20px; }
             .close { top: 20px; right: 25px; font-size: 38px; }
             .nav-btn { width: 45px; height: 45px; font-size: 20px; }
             .prev-btn { left: 15px; }
@@ -184,7 +368,34 @@
 </head>
 <body>
 
-    <header>
+    <!-- Top Sticky Clickable Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Fardos Shoots</a>
+            <div class="nav-links">
+                <!-- Dropdown Navigation Links -->
+                <div class="dropdown">
+                    <a href="#gallery-work">Portfolio &#10148;</a>
+                    <div class="dropdown-content">
+                        <a href="#art-gallery">Art</a>
+                        <a href="#animals-gallery">Animals</a>
+                        <a href="#landscape-gallery">Landscape</a>
+                        <a href="#architecture-gallery">Architecture</a>
+                        <a href="#sea-gallery">Sea</a>
+                        <a href="#flags-gallery">Flags</a>
+                        <a href="#portraits-gallery">Portraits</a>
+                        <a href="#doors-gallery">Doors</a>
+                        <a href="#vehicles-gallery">Vehicles</a>
+                        <a href="#churches-gallery">Churches</a>
+                    </div>
+                </div>
+                <a href="#pricing-rates">Investment & Booking</a>
+                <a href="#contact-page">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="gallery-work">
         <h1>Fardos Shoots</h1>
         <p>Fine Art & Documentary Photography Portfolio</p>
     </header>
@@ -192,114 +403,188 @@
     <main id="portfolio-container">
         
         <!-- Art Category -->
-        <section class="category-section">
+        <section class="category-section" id="art-gallery">
             <div class="category-title">Art</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1dpEkRJKV9lq3cy6NtQkyFr4btGsO1tj4" alt="Art Selection 1"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1GvIXoHgAI8gSTT1k3EpYj-zrz7e4_T4r" alt="Art Selection 2"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1xq3JsT_6xeIHsqyzBiqDLm4sJfLgaZjs" alt="Art Selection 3"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/13FV2lTffWrAIOwNaJR3gIHrlptr8-Q8x" alt="Art Selection 4"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1HngYwxPUron9mHyja6KeTXiPAgfPc5j8" alt="Art Selection 5"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1HnILyEXLCCh0a_rxgNfrv-5u6MsTe1nD" alt="Art Selection 6"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1uw1m_XHVa5rn2wovfOud_aEIFk2MA_RB" alt="Art Selection 7"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10ghy4_u672YezGzUCaRYdYrof-GyCjyI" alt="Art Selection 8"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1BJxjVtVnhxw-CYGJ_jdus8cEfoPVWyze" alt="Art Selection 9"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10kmlBrE-U0mEVpkspLYG-9xcW094Wgx5" alt="Art Selection 10"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1Bo6r-6Rwbch5WN9giWSxUQcRdtArRk7g" alt="Art Selection 11"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1wUueDMfth_kDKvnuwZYANfeWF1ZzUi61" alt="Art Selection 12"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10mrHHtx8v5vl3ZXSGejj1S-mHwqupFvD" alt="Art Selection 13"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1rGCH1tmTEou3MGPsCB5j6vphbzWPGCZm" alt="Art Selection 14"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10fsU_ZP6LiQVFM0YYKG_Fi09XUPAXYsG" alt="Art Selection 15"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1epfncXlIT8jvD6ZcOyhM7EHS5T-XJTFM" alt="Art Selection 16"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1h2CM8KMGq7ywCeW7JK5gvDuoNnJI6QOR" alt="Art Selection 17"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1dpEkRJKV9lq3cy6NtQkyFr4btGsO1tj4" alt="Art Selection 1"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1GvIXoHgAI8gSTT1k3EpYj-zrz7e4_T4r" alt="Art Selection 2"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1xq3JsT_6xeIHsqyzBiqDLm4sJfLgaZjs" alt="Art Selection 3"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=13FV2lTffWrAIOwNaJR3gIHrlptr8-Q8x" alt="Art Selection 4"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1HngYwxPUron9mHyja6KeTXiPAgfPc5j8" alt="Art Selection 5"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1HnILyEXLCCh0a_rxgNfrv-5u6MsTe1nD" alt="Art Selection 6"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1uw1m_XHVa5rn2wovfOud_aEIFk2MA_RB" alt="Art Selection 7"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=10ghy4_u672YezGzUCaRYdYrof-GyCjyI" alt="Art Selection 8"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1BJxjVtVnhxw-CYGJ_jdus8cEfoPVWyze" alt="Art Selection 9"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=10kmlBrE-U0mEVpkspLYG-9xcW094Wgx5" alt="Art Selection 10"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1Bo6r-6Rwbch5WN9giWSxUQcRdtArRk7g" alt="Art Selection 11"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1wUueDMfth_kDKvnuwZYANfeWF1ZzUi61" alt="Art Selection 12"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=10mrHHtx8v5vl3ZXSGejj1S-mHwqupFvD" alt="Art Selection 13"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1rGCH1tmTEou3MGPsCB5j6vphbzWPGCZm" alt="Art Selection 14"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=10fsU_ZP6LiQVFM0YYKG_Fi09XUPAXYsG" alt="Art Selection 15"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1epfncXlIT8jvD6ZcOyhM7EHS5T-XJTFM" alt="Art Selection 16"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1h2CM8KMGq7ywCeW7JK5gvDuoNnJI6QOR" alt="Art Selection 17"></div>
             </div>
         </section>
 
         <!-- Animals Category -->
-        <section class="category-section">
+        <section class="category-section" id="animals-gallery">
             <div class="category-title">Animals</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/18OAexFkrHWD6YShjHlVCEqdcutWPBdUc" alt="Animals - IMG_2466"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=18OAexFkrHWD6YShjHlVCEqdcutWPBdUc" alt="Animals - IMG_2466"></div>
             </div>
         </section>
 
-        <!-- Views Category -->
-        <section class="category-section">
-            <div class="category-title">Views</div>
+        <!-- Landscape Category -->
+        <section class="category-section" id="landscape-gallery">
+            <div class="category-title">Landscape</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1s40QALiGBv7GWKc_v5AAgW_KgxLNWBXT" alt="Views - IMG_2462"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1s40QALiGBv7GWKc_v5AAgW_KgxLNWBXT" alt="Landscape - IMG_2462"></div>
             </div>
         </section>
 
-        <!-- Theatre Category -->
-        <section class="category-section">
-            <div class="category-title">Theatre</div>
+        <!-- Architecture Category -->
+        <section class="category-section" id="architecture-gallery">
+            <div class="category-title">Architecture</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1QdyF7Q9jJtwjY35S9gtVo-7gyhq2JtMM" alt="Theatre Selection 1"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1kpl4iJ83K-snQM1DS5hrHAGUUMKBy37o" alt="Theatre Selection 2"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1i3fi5Gof6CQs0blbA1b8pk3dI25Z2BC1" alt="Theatre Selection 3"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1t1vXOdcOOSJhnH-isFiQPFJF-_WOnLK7" alt="Theatre Selection 4"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1QgPKgikolq5NyFLeAuL5CJDL3H4UMQYU" alt="Theatre Selection 5"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1vt8FXKp5airFqnQe5EfH-DTU_mTBF2KJ" alt="Theatre Selection 6"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1G9tkwhpj26v36XOg1vi2poyBaKDSjl4x" alt="Theatre Selection 7"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1UbmBdO48UYKnWOJB7J_-SSMgN40O1VPz" alt="Theatre Selection 8"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1QQbr-vlCsavVRLEXb1A6W8GPY7X3MwHs" alt="Theatre Selection 9"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1fQnVwgFshn9CHeAkbu67AL1dWBRuDfwB" alt="Theatre Selection 10"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1jmXDNwQr1as5mAcmMhRJBHsCVsp7v0I0" alt="Theatre Selection 11"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1QdyF7Q9jJtwjY35S9gtVo-7gyhq2JtMM" alt="Architecture Selection 1"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1kpl4iJ83K-snQM1DS5hrHAGUUMKBy37o" alt="Architecture Selection 2"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1i3fi5Gof6CQs0blbA1b8pk3dI25Z2BC1" alt="Architecture Selection 3"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1t1vXOdcOOSJhnH-isFiQPFJF-_WOnLK7" alt="Architecture Selection 4"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1QgPKgikolq5NyFLeAuL5CJDL3H4UMQYU" alt="Architecture Selection 5"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1vt8FXKp5airFqnQe5EfH-DTU_mTBF2KJ" alt="Architecture Selection 6"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1G9tkwhpj26v36XOg1vi2poyBaKDSjl4x" alt="Architecture Selection 7"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1UbmBdO48UYKnWOJB7J_-SSMgN40O1VPz" alt="Architecture Selection 8"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1QQbr-vlCsavVRLEXb1A6W8GPY7X3MwHs" alt="Architecture Selection 9"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1fQnVwgFshn9CHeAkbu67AL1dWBRuDfwB" alt="Architecture Selection 10"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1jmXDNwQr1as5mAcmMhRJBHsCVsp7v0I0" alt="Architecture Selection 11"></div>
             </div>
         </section>
 
         <!-- Sea Category -->
-        <section class="category-section">
+        <section class="category-section" id="sea-gallery">
             <div class="category-title">Sea</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1c_fAYzc4tHgCWOFAxf4C2gYk5sZ4Yt39" alt="Sea Selection 1"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/10cgBMxNZ8LFP5wgqRkK4AJ7nm6__WwEo" alt="Sea Selection 2"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1G4sFfY7EOr_raLlxOwLCZvKQdVRj1xN5" alt="Sea Selection 3"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/12WiyMHJQeftMDRQSUKDnu89fC6fTWJL2" alt="Sea Selection 4"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1c_fAYzc4tHgCWOFAxf4C2gYk5sZ4Yt39" alt="Sea Selection 1"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=10cgBMxNZ8LFP5wgqRkK4AJ7nm6__WwEo" alt="Sea Selection 2"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1G4sFfY7EOr_raLlxOwLCZvKQdVRj1xN5" alt="Sea Selection 3"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=12WiyMHJQeftMDRQSUKDnu89fC6fTWJL2" alt="Sea Selection 4"></div>
             </div>
         </section>
 
         <!-- Flags Category -->
-        <section class="category-section">
+        <section class="category-section" id="flags-gallery">
             <div class="category-title">Flags</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1IQ9MReS4awEKK_3YIiELJ9VaOClqBYT4" alt="Flags Selection"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1IQ9MReS4awEKK_3YIiELJ9VaOClqBYT4" alt="Flags Selection"></div>
             </div>
         </section>
 
         <!-- Portraits Category -->
-        <section class="category-section">
+        <section class="category-section" id="portraits-gallery">
             <div class="category-title">Portraits</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1GptAxMw2ohz4KQvMR7HGIG4UCVMN_VgU" alt="Portraits Selection 1"></div>
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1mRwRmVVW4RyOqPQvAa3hnZjopOdvDlQu" alt="Portraits Selection 2"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1GptAxMw2ohz4KQvMR7HGIG4UCVMN_VgU" alt="Portraits Selection 1"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1mRwRmVVW4RyOqPQvAa3hnZjopOdvDlQu" alt="Portraits Selection 2"></div>
             </div>
         </section>
 
         <!-- Doors Category -->
-        <section class="category-section">
+        <section class="category-section" id="doors-gallery">
             <div class="category-title">Doors</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/13oW-s4DdS7AH_wSBK4jeaz4PXqdt3F4x" alt="Doors Selection"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=13oW-s4DdS7AH_wSBK4jeaz4PXqdt3F4x" alt="Doors Selection"></div>
             </div>
         </section>
 
         <!-- Vehicles Category -->
-        <section class="category-section">
+        <section class="category-section" id="vehicles-gallery">
             <div class="category-title">Vehicles</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1WZi9KNmUIquGM4PcKOjE_VNjWMVzdESm" alt="Vehicles Selection"></div>
+                <div class="gallery-item"><img src="https://drive.google.com/thumbnail?sz=w1000&id=1WZi9KNmUIquGM4PcKOjE_VNjWMVzdESm" alt="Vehicles Selection"></div>
             </div>
         </section>
 
-        <!-- Churches Category -->
-        <section class="category-section">
+        <!-- Churches Category (Intentionally left empty) -->
+        <section class="category-section" id="churches-gallery">
             <div class="category-title">Churches</div>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://lh3.googleusercontent.com/d/1rWo9R3l8rOVQqo5rjKhHd9ayzH3FL1PD" alt="Churches Selection"></div>
+                <!-- Empty for now -->
             </div>
         </section>
+
+        <!-- Investment Catalog Block -->
+        <div class="split-container" id="pricing-rates">
+            <div style="grid-column: span 2;">
+                <div class="info-heading">Investment Catalog & Session Bookings</div>
+                <p style="color: #aaa; font-size: 0.95rem; margin-top: -15px; margin-bottom: 40px; max-width: 800px; line-height: 1.6;">
+                    Select an investment track below to open a pre-formatted email request template. Fill out your location preferences and custom calendar dates, and we'll sync up project assets.
+                </p>
+                
+                <div class="price-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px;">
+                    
+                    <!-- Wedding -->
+                    <div class="price-card">
+                        <div class="price-header">
+                            <span class="price-name">Wedding Documentation</span>
+                            <span class="price-value">$1,500 USD</span>
+                        </div>
+                        <p class="price-desc">Full timeline documentation layout, dedicated digital galley indexing, and full structural print rights.</p>
+                        <a href="mailto:fardos.dev@gmail.com?subject=Booking%20Inquiry%3A%20Wedding%20Documentation&body=Hi%20Fardos%2C%0A%0AI'd%20like%20to%20book%20a%20Wedding%20Documentation%20session%20(%241%2C500%20USD).%0A%0APreferred%20Date(s)%3A%20%0ALocation%2FVenue%3A%20%0AAny%20additional%20details%20or%20vision%20notes%3A%20%0A%0AThanks!" class="email-btn">Inquire via Email</a>
+                    </div>
+
+                    <!-- Landscape -->
+                    <div class="price-card">
+                        <div class="price-header">
+                            <span class="price-name">Landscape Shoot Print</span>
+                            <span class="price-value">$800 USD</span>
+                        </div>
+                        <p class="price-desc">Limited edition high-density museum archival galley proof prints, framed and certified.</p>
+                        <a href="mailto:fardos.dev@gmail.com?subject=Inquiry%3A%20Landscape%20Shoot%20Print&body=Hi%20Fardos%2C%0A%0AI'm%20interested%20in%20purchasing%2Fcommissioning%20a%20Landscape%20Shoot%20Print%20(%24800%20USD).%0A%0AWhich%20gallery%20image%20or%20specific%20view%20are%20you%20interested%20in%3F%20%0ARequested%20Print%20Dimensions%3A%20%0A%0AThanks!" class="email-btn">Inquire via Email</a>
+                    </div>
+
+                    <!-- Architecture -->
+                    <div class="price-card">
+                        <div class="price-header">
+                            <span class="price-name">Architecture Documentation</span>
+                            <span class="price-value">$650 USD</span>
+                        </div>
+                        <p class="price-desc">Fine art structural perspective mapping, geometric lighting studies, and high-fidelity archival sets.</p>
+                        <a href="mailto:fardos.dev@gmail.com?subject=Booking%20Inquiry%3A%20Architecture%20Documentation&body=Hi%20Fardos%2C%0A%0AI'd%20like%20to%20book%20an%20Architecture%20Documentation%20session%20(%24650%20USD).%0A%0AStructure%2FProject%20Name%3A%20%0AProposed%20Shoot%20Dates%3A%20%0ALocation%3A%20%0A%0AThanks!" class="email-btn">Inquire via Email</a>
+                    </div>
+
+                    <!-- Portraits -->
+                    <div class="price-card">
+                        <div class="price-header">
+                            <span class="price-name">Commercial & Editorial Portraits</span>
+                            <span class="price-value">$400 USD</span>
+                        </div>
+                        <p class="price-desc">Lookbooks, high-contrast studio execution, or environmental setups designed for print publishing features.</p>
+                        <a href="mailto:fardos.dev@gmail.com?subject=Booking%20Inquiry%3A%20Commercial%20and%20Editorial%20Portraits&body=Hi%20Fardos%2C%0A%0AI'd%20like%20to%20book%20a%20Commercial%20%26%20Editorial%20Portraits%20session%20(%24400%20USD).%0A%0AProject%20Type%20(Commercial%2FLookbook%2FPersonal%20Editorial)%3A%20%0AProposed%20Date%3A%20%0ALocation%20Idea%3A%20%0A%0AThanks!" class="email-btn">Inquire via Email</a>
+                    </div>
+
+                    <!-- Portfolio -->
+                    <div class="price-card">
+                        <div class="price-header">
+                            <span class="price-name">Personal Portfolio Shoot</span>
+                            <span class="price-value">$200 USD</span>
+                        </div>
+                        <p class="price-desc">Tailored modeling test sheets, concept building look layouts, and high-res curated digital sheets.</p>
+                        <a href="mailto:fardos.dev@gmail.com?subject=Booking%20Inquiry%3A%20Personal%20Portfolio%20Shoot&body=Hi%20Fardos%2C%0A%0AI'd%20like%20to%20book%20a%20Personal%20Portfolio%20Shoot%20(%24200%20USD).%0A%0AProposed%20Date%3A%20%0ANotes%20on%20Style%2FVibe%2FConcept%3A%20%0A%0AThanks!" class="email-btn">Inquire via Email</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="category-section" id="contact-page" style="border-top: 1px solid #141414; padding-top: 60px; text-align: center; max-width: 700px;">
+            <div class="info-heading" style="border: none; margin-bottom: 15px;">Get In Touch</div>
+            <p style="color: #aaa; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px;">
+                Have questions about commissions, customized print sizes, or scheduling an unlisted niche project? Tap below to shoot an email directly. Let's create something classic.
+            </p>
+            <a href="mailto:fardos.dev@gmail.com?subject=General%20Photography%20Inquiry" class="email-btn" style="padding: 16px 40px; font-size: 0.85rem;">Send Email</a>
+            <p style="margin-top: 25px; font-size: 0.8rem; color: #444; letter-spacing: 1px; text-transform: uppercase;">Direct Line: fardos.dev@gmail.com</p>
+        </div>
 
     </main>
 
